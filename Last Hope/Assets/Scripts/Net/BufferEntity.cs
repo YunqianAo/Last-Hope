@@ -34,7 +34,7 @@ namespace Game.Net
         public byte[] Encoder(bool isAck) {
 
             byte[] data = new byte[32+protoSize];
-            if (isAck = true)
+            if (isAck == true)
             {
                 protoSize = 0;
             }
