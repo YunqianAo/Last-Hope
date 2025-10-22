@@ -21,6 +21,7 @@ namespace Game.Net
             udpClient = new UdpClient(0);
             server=new IPEndPoint(IPAddress.Parse(ip), port);
             local=new UClient(this, server,0,0,0,dispatchNetEvent);
+            ReceiveTask();
         }
         ConcurrentQueue<UdpReceiveResult> awaitHandle = new ConcurrentQueue<UdpReceiveResult>();
         public async void ReceiveTask()

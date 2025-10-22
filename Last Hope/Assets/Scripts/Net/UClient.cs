@@ -10,7 +10,7 @@ namespace Game.Net
 {
     public class UClient
     {
-        IPEndPoint endPoint;
+        public IPEndPoint endPoint;
         USocket uSocket;
         public int sessionID;
         public int sendSN = 0;
