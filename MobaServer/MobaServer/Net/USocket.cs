@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MobaServer.Net
 {
@@ -17,6 +19,7 @@ namespace MobaServer.Net
              this.dispatchNetEvent = dispatchNetEvent;
             socket = new UdpClient(8899);
             Receive();
+            Task.Run(Handle,ct.Token);
         }
         public async void Send(byte[] data,IPEndPoint endPoint)
         {
@@ -56,7 +59,40 @@ namespace MobaServer.Net
                 }
             }
         }
+        CancellationTokenSource ct= new CancellationTokenSource();  
+        int sessionID = 1000;
+        async Task Handle()
+        {
+            while (!ct.IsCancellationRequested)
+            {
+                if (awaitHandle.Count > 0)
+                {
+                    UdpReceiveResult data;
+                    if (awaitHandle.TryDequeue(out data))
+                    {
+                        BufferEntity bufferEntity = new BufferEntity(data.RemoteEndPoint, data.Buffer);
+                        if (bufferEntity.isFull)
+                        {
+                            if (bufferEntity.session == 0)
+                            {
+                                sessionID += 1;
+                                bufferEntity.session = sessionID;
+                            }
+                            UClient targetClient;
+                            if (clients.TryGetValue(bufferEntity.session, out targetClient))
+                            {
+                                targetClient.Handle(bufferEntity);
+                            }
+                        }
+
+                    }
+                }
+            }
+            
+
+        }
         void Close() { 
+            ct.Cancel();
             if (socket != null)
             {
                 socket.Close();
@@ -67,6 +103,33 @@ namespace MobaServer.Net
                 dispatchNetEvent=null;
             }
         }
-        
+        ConcurrentDictionary<int,UClient> clients= new ConcurrentDictionary<int,UClient>();
+        void CreateUClient(BufferEntity buffer)
+        {
+            UClient client;
+            if(!clients.TryGetValue(buffer.session, out client))
+            {
+                client = new UClient(this,buffer.endPoint,0,0,buffer.session,dispatchNetEvent);
+                clients.TryAdd(buffer.session, client);
+            }
+        }
+        public void RemoveClient(int sessionID)
+        {
+            UClient client;
+            if(clients.TryRemove(sessionID, out client))
+            {
+                client.Close();
+                client=null;
+            }
+        }
+        public UClient GetClient(int sessionID)
+        {
+            UClient client;
+            if (clients.TryGetValue(sessionID, out client))
+            {
+                return client;
+            }
+            return null;
+        }
     }
 }
