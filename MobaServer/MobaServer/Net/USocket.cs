@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net;
@@ -17,7 +18,7 @@ namespace MobaServer.Net
         Action<BufferEntity> dispatchNetEvent;
         public USocket(Action<BufferEntity> dispatchNetEvent) { 
              this.dispatchNetEvent = dispatchNetEvent;
-            socket = new UdpClient(8899);
+            socket = new UdpClient(port);
             Receive();
             Task.Run(Handle,ct.Token);
         }
@@ -35,6 +36,8 @@ namespace MobaServer.Net
                 }
                 catch (Exception e)
                 {
+                    Debug.LogError($"Send Exception{e.Message}");
+
                     Close();
                 }
             }
@@ -54,7 +57,8 @@ namespace MobaServer.Net
                     awaitHandle.Enqueue(result);
                     Receive();  
                 }
-                catch(Exception e) { 
+                catch(Exception e) {
+                    Debug.LogError($"Receive Exception{e.Message}");
                 Close();
                 }
             }
@@ -91,8 +95,13 @@ namespace MobaServer.Net
             
 
         }
-        void Close() { 
+        void Close() {
             ct.Cancel();
+            foreach (var client in clients.Values)
+            {
+                client.Close();
+            }
+            
             if (socket != null)
             {
                 socket.Close();
@@ -102,6 +111,7 @@ namespace MobaServer.Net
             {
                 dispatchNetEvent=null;
             }
+
         }
         ConcurrentDictionary<int,UClient> clients= new ConcurrentDictionary<int,UClient>();
         void CreateUClient(BufferEntity buffer)
