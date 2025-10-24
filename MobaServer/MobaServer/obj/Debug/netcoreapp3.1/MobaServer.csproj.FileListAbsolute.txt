@@ -1,0 +1,17 @@
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\bin\Debug\netcoreapp3.1\MobaServer.exe
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\bin\Debug\netcoreapp3.1\MobaServer.deps.json
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\bin\Debug\netcoreapp3.1\MobaServer.runtimeconfig.json
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\bin\Debug\netcoreapp3.1\MobaServer.runtimeconfig.dev.json
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\bin\Debug\netcoreapp3.1\MobaServer.dll
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\bin\Debug\netcoreapp3.1\MobaServer.pdb
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\bin\Debug\netcoreapp3.1\LitJson.dll
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\obj\Debug\netcoreapp3.1\MobaServer.csproj.AssemblyReference.cache
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\obj\Debug\netcoreapp3.1\MobaServer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\obj\Debug\netcoreapp3.1\MobaServer.AssemblyInfoInputs.cache
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\obj\Debug\netcoreapp3.1\MobaServer.AssemblyInfo.cs
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\obj\Debug\netcoreapp3.1\MobaServer.csproj.CoreCompileInputs.cache
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\obj\Debug\netcoreapp3.1\MobaServer.sourcelink.json
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\obj\Debug\netcoreapp3.1\MobaServer.csproj.Up2Date
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\obj\Debug\netcoreapp3.1\MobaServer.dll
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\obj\Debug\netcoreapp3.1\MobaServer.pdb
+C:\Users\yunqian\Documents\GitHub\Last-Hope\MobaServer\MobaServer\obj\Debug\netcoreapp3.1\MobaServer.genruntimeconfig.cache

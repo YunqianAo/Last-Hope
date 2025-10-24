@@ -16,6 +16,7 @@ namespace MobaServer.Net
         {
             if (uClient.isConnect)
             {
+                Debug.Log(messageID,message);
                 BufferEntity bufferEntity=new BufferEntity(uClient.endPoint,uClient.session,0,0,MessageType.Login.GetHashCode(),messageID,ProtobufHelper.ToBytes(message));
                 uClient.Send(bufferEntity);
                 return bufferEntity;    
