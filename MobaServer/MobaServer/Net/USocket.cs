@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MobaServer.Net
 {
-    internal class USocket
+    public class USocket
     {
         UdpClient socket;
         string ip="192.168.0.144";

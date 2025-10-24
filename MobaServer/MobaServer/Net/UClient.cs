@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace MobaServer.Net
 {
-    internal class UClient
+    public class UClient
     {
         private USocket uSocket;
-        private IPEndPoint endPoint;
+        public IPEndPoint endPoint;
         private int sendSN;
         private int handleSN;
-        private int session;
+        public int session;
         private Action<BufferEntity> dispatchNetEvent;
 
         public UClient(USocket uSocket, IPEndPoint endPoint, int sendSN, int handleSN, int session, Action<BufferEntity> dispatchNetEvent)
@@ -26,7 +26,7 @@ namespace MobaServer.Net
             this.dispatchNetEvent = dispatchNetEvent;
             CheckOutTime();
         }
-        bool isConnect=true;
+        public bool isConnect=true;
         int overtime = 150;
         private async void CheckOutTime() { 
         
