@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MobaServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5bfba29a47958a09a3cbfacf2aec824f01205ce7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4e37df86a74a412b076c1061253e77a838fd3b2d")]
 [assembly: System.Reflection.AssemblyProductAttribute("MobaServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MobaServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MobaServer.Net
 {
@@ -26,8 +27,26 @@ namespace MobaServer.Net
             CheckOutTime();
         }
         bool isConnect=true;
-        private void CheckOutTime() { 
+        int overtime = 150;
+        private async void CheckOutTime() { 
         
+            await Task.Delay(overtime);
+            foreach(var package in sendPackage.Values)
+            {
+                if (TimeHelper.Now() - package.time >= overtime * 10)
+                {
+                    Debug.LogError($"repeat over 10 times but fail{package.messageID}");
+                    uSocket.RemoveClient(session);
+                    return;
+                }
+                if(TimeHelper.Now()-package.time >= overtime * (package.recurCount + 1))
+                {
+                    package.recurCount += 1;
+                    Debug.Log($"overtime and repeat to send{package.sn}");
+                    uSocket.Send(package.buffer, endPoint);
+                }
+            }
+            CheckOutTime();
         }
         internal void Close()
         {
