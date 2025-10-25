@@ -28,6 +28,7 @@ namespace MobaServer.Net
             this.moduleID = moduleID;
             this.messageType = messageType;
             this.messageID = messageID;
+            this.proto = proto; 
 
         }
         public byte[] Encoder(bool isAck) {
