@@ -31,7 +31,9 @@ namespace Game.Net
                 try
                 {
                     UdpReceiveResult result= await udpClient.ReceiveAsync();
+                    
                     awaitHandle.Enqueue(result);
+                    Debug.Log("have received message");
                 }
                 catch(Exception e) {
                     Debug.LogError(e.Message);

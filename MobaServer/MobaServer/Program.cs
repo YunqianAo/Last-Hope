@@ -16,7 +16,7 @@ namespace MobaServer
         static void NetSystemInit()
         {
             uSocket = new USocket(DispatchNetEvent);
-            Debug.Log("Net System Initial Complete")
+            Debug.Log("Net System Initial Complete");
         }
         static void DispatchNetEvent(BufferEntity buffer) { 
 
