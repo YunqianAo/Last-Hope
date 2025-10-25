@@ -81,6 +81,8 @@ namespace MobaServer.Net
                             {
                                 sessionID += 1;
                                 bufferEntity.session = sessionID;
+                                CreateUClient(bufferEntity);
+                                Debug.Log($"Create client{sessionID}");
                             }
                             UClient targetClient;
                             if (clients.TryGetValue(bufferEntity.session, out targetClient))

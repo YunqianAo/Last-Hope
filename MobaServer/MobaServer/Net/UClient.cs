@@ -72,6 +72,7 @@ namespace MobaServer.Net
                     case 1:
                     BufferEntity ackPackage=new BufferEntity(buffer);
                     uSocket.SendACK(ackPackage,endPoint);
+                    Debug.Log("receive business message");
                     HandleLoginPackage(buffer);
                     break;
                     default:
@@ -97,6 +98,7 @@ namespace MobaServer.Net
             handleSN = buffer.sn;
             if(dispatchNetEvent!=null)
             {
+                Debug.Log("dispatch message for game");
                 dispatchNetEvent(buffer);
             }
             BufferEntity nextBuffer;

@@ -45,7 +45,7 @@ namespace Game.Net
             {
                 try
                 {
-                    await udpClient.SendAsync(data,data.Length,ip,port);
+                   int length= await udpClient.SendAsync(data,data.Length,ip,port);
                 }
                 catch( Exception e ) 
                 {

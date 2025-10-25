@@ -85,7 +85,7 @@ namespace Game.Net
             sendSN += 1;
             package.sn = sendSN;
             package.Encoder(false);
-            if(sessionID == 0)
+            if(sessionID != 0)
             {
                 sendPackage.TryAdd(sendSN, package);
             }
