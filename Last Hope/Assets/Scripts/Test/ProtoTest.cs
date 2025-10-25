@@ -28,6 +28,18 @@ public class ProtoTest : MonoBehaviour
         {
             uSocket.Handle();
         }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            
+            UserInfo userInfo = new UserInfo();
+            userInfo.Account = "11111";
+            userInfo.Password = "password";
+
+            UserRegisterC2S userRegisterC2S = new UserRegisterC2S();
+            userRegisterC2S.UserInfo = userInfo;
+            BufferEntity bufferEntity = BufferFactory.CreateAndSendPackage(1001, userInfo);
+            //UserRegisterC2S userRegisterC2S1 = ProtobufHelper.FromBytes<UserRegisterC2S>(bufferEntity.proto);
+        }
     }
     void DispatchNetEvent(BufferEntity buffer)
     {
