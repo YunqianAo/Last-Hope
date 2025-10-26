@@ -47,7 +47,7 @@ namespace ProtoMsg {
     public const int ResultFieldNumber = 1;
     private int result_;
     /// <summary>
-    ///结果:0进入匹配成功
+    ///结果:0进入匹配成功 Resultado
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int Result {
@@ -130,7 +130,7 @@ namespace ProtoMsg {
     public const int ResultFieldNumber = 1;
     private int result_;
     /// <summary>
-    ///结果:0匹配成功,就可以进入到房间模块
+    ///结果:0匹配成功,就可以进入到房间模块 Resultado: 0 coincidencias. Se puede pasar al modulo de habitaciones.
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int Result {
@@ -144,7 +144,7 @@ namespace ProtoMsg {
     public const int RoomInfoFieldNumber = 2;
     private global::ProtoMsg.RoomInfo roomInfo_;
     /// <summary>
-    ///房间信息
+    ///房间信息 Información de las habitaciones
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::ProtoMsg.RoomInfo RoomInfo {
@@ -241,7 +241,7 @@ namespace ProtoMsg {
     public const int ResultFieldNumber = 1;
     private int result_;
     /// <summary>
-    ///结果:0成功
+    ///结果:0成功 Resultado: 0 exito
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int Result {

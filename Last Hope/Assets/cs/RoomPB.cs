@@ -18,7 +18,7 @@ namespace ProtoMsg {
     public const int HeroIDFieldNumber = 1;
     private int heroID_;
     /// <summary>
-    ///英雄ID
+    ///英雄ID Hero ID
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int HeroID {
@@ -72,7 +72,7 @@ namespace ProtoMsg {
     public const int RolesIDFieldNumber = 1;
     private int rolesID_;
     /// <summary>
-    ///选择英雄的角色
+    ///选择英雄的角色 Seleccion
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int RolesID {
