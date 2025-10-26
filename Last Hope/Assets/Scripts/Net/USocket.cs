@@ -11,7 +11,7 @@ namespace Game.Net
     public class USocket
     {
         UdpClient udpClient;
-        string ip="192.168.0.144";
+        string ip= "127.0.0.1";
         int port=8899;
         public static IPEndPoint server;
         public static UClient local;
