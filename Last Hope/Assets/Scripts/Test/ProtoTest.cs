@@ -10,14 +10,19 @@ public class ProtoTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        uSocket=new USocket(DispatchNetEvent);
+        uSocket = new USocket(DispatchNetEvent);
+        TestSend();
+    }
+
+    private static void TestSend()
+    {
         UserInfo userInfo = new UserInfo();
         userInfo.Account = "11111";
         userInfo.Password = "password";
 
         UserRegisterC2S userRegisterC2S = new UserRegisterC2S();
         userRegisterC2S.UserInfo = userInfo;
-        BufferEntity bufferEntity=BufferFactory.CreateAndSendPackage(1001, userInfo);
+        BufferEntity bufferEntity = BufferFactory.CreateAndSendPackage(1001, userInfo);
         //UserRegisterC2S userRegisterC2S1 = ProtobufHelper.FromBytes<UserRegisterC2S>(bufferEntity.proto);
     }
 
@@ -30,15 +35,15 @@ public class ProtoTest : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            
-            UserInfo userInfo = new UserInfo();
-            userInfo.Account = "11111";
-            userInfo.Password = "password";
+            TestSend();
+            //UserInfo userInfo = new UserInfo();
+            //userInfo.Account = "11111";
+            //userInfo.Password = "password";
 
-            UserRegisterC2S userRegisterC2S = new UserRegisterC2S();
-            userRegisterC2S.UserInfo = userInfo;
-            BufferEntity bufferEntity = BufferFactory.CreateAndSendPackage(1001, userInfo);
-            //UserRegisterC2S userRegisterC2S1 = ProtobufHelper.FromBytes<UserRegisterC2S>(bufferEntity.proto);
+            //UserRegisterC2S userRegisterC2S = new UserRegisterC2S();
+            //userRegisterC2S.UserInfo = userInfo;
+            //BufferEntity bufferEntity = BufferFactory.CreateAndSendPackage(1001, userInfo);
+            ////UserRegisterC2S userRegisterC2S1 = ProtobufHelper.FromBytes<UserRegisterC2S>(bufferEntity.proto);
         }
     }
     void DispatchNetEvent(BufferEntity buffer)

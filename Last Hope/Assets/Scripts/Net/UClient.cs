@@ -31,6 +31,7 @@ namespace Game.Net
         public void Handle(BufferEntity buffer)
         {
             if(this.sessionID==0&&buffer.session!=0) {
+                Debug.Log($"session ID from server is {buffer.session}");
             this.sessionID = buffer.session;
             }
             switch (buffer.messageType)
@@ -101,14 +102,15 @@ namespace Game.Net
             await Task.Delay(overtime);
             foreach (var package in sendPackage.Values)
             {
-                if (TimeHelper.Now() - package.time >= overtime * 10)
+                if (package.recurCount >= 10)
                 {
                     OnDisconnect();
                     return;
                 }
-                if (TimeHelper.Now() - package.time >=(package.recurCount+1)* overtime)
+                if (TimeHelper.Now() - package.time >= (package.recurCount + 1) * overtime)
                 {
                     package.recurCount += 1;
+                    Debug.Log($"outtime and repeat, time{package.recurCount}");
                     uSocket.Send(package.buffer, endPoint);
                 }
             }

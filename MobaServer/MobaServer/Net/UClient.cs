@@ -70,6 +70,10 @@ namespace MobaServer.Net
                     }
                     break;
                     case 1:
+                    if (buffer.sn != 1)
+                    {
+                        return;
+                    }
                     BufferEntity ackPackage=new BufferEntity(buffer);
                     uSocket.SendACK(ackPackage,endPoint);
                     Debug.Log("receive business message");
