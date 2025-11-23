@@ -3,7 +3,7 @@ using System;
 
 namespace MobaServer
 {
-    internal class Program
+    internal class GameManager
     {
         static void Main(string[] args)
         {
@@ -20,7 +20,7 @@ namespace MobaServer
         }
         static void DispatchNetEvent(BufferEntity buffer) { 
 
-        
+        NetEvent.Instance.Dispatch(buffer.messageID, buffer);
         
         }
     }
