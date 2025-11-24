@@ -3,6 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.View;
 
+/// <summary>
+/// 窗体类型
+/// </summary>
+public enum WindowType
+{
+    LoginWindow,
+    RolesWindow,
+    LobbyWindow,
+    RoomWindow,
+    BattleWindow,
+    //StoreWindow,
+    TipsWindow,//提示窗口
+}
+
+
+/// <summary>
+/// 场景类型,目的:提供根据场景类型进行预加载
+/// </summary>
+public enum ScenesType
+{
+    None,
+    Login,
+    Battle,
+}
+
 public class WindowManager : MonoSingleton<WindowManager>
 {
     Dictionary<WindowType, BaseWindow> windowDIC = new Dictionary<WindowType, BaseWindow>();
@@ -10,7 +35,8 @@ public class WindowManager : MonoSingleton<WindowManager>
     public WindowManager() {
         //商店
         //
-        windowDIC.Add(WindowType.StoreWindow,new StoreWindow());
+        //windowDIC.Add(WindowType.StoreWindow,new StoreWindow());
+        windowDIC.Add(WindowType.LoginWindow, new LoginWindow());
     }
 
     public void Update()
