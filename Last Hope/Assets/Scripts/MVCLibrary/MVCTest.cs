@@ -7,7 +7,7 @@ public class MVCTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        WindowManager.Instance.OpenWindow(WindowType.StoreWindow);
+        //WindowManager.Instance.OpenWindow(WindowType.StoreWindow);
     }
 
     // Update is called once per frame

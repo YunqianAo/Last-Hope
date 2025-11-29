@@ -1,4 +1,5 @@
-﻿using MobaServer.Net;
+﻿using MobaServer.GameModule;
+using MobaServer.Net;
 using System;
 
 namespace MobaServer
@@ -8,6 +9,7 @@ namespace MobaServer
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            GameModuleInit();
             NetSystemInit();
 
             Console.ReadLine(); 
@@ -22,6 +24,10 @@ namespace MobaServer
 
         NetEvent.Instance.Dispatch(buffer.messageID, buffer);
         
+        }
+        static void GameModuleInit()
+        {
+            UserModule.Instance.Init();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Game.View
         {
             resName = "UI/Window/StoreWindow";
             resident = true;
-            selfType = WindowType.StoreWindow;
+            //selfType = WindowType.StoreWindow;
             scenesType = ScenesType.Login;
         }
 
