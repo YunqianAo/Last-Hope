@@ -15,7 +15,8 @@ namespace Game.View
         {
             scenesType=ScenesType.Login;
             resident=false;
-            resName = "User/LoginWindow";
+            resName = "UIPrefab/User/LoginWindow";
+
         }
         public override void Update(float deltaTime)
         {
