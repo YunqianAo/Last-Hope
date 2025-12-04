@@ -1,4 +1,5 @@
 ﻿using Google.Protobuf;
+using ProtoMsg;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,6 +24,13 @@ namespace MobaServer.Net
 
             }
             return null;
+        }
+
+        internal static BufferEntity CreateAndSendPackage(BufferEntity request, IMessage message)
+        {
+            Debug.Log("sessionID:" + request.session);
+            UClient client = GameManager.uSocket.GetClient(request.session);
+            return CreateAndSendPackage(client, request.messageID, message);
         }
     }
 }

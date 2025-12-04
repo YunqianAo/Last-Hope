@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
         uSocket = new USocket(DispatchNetEvent);
+        WindowManager.Instance.OpenWindow(WindowType.LoginWindow);
     }
 
     // Update is called once per frame
