@@ -18,7 +18,7 @@ namespace ProtoMsg {
     public const int NickNameFieldNumber = 1;
     private string nickName_ = "";
     /// <summary>
-    ///昵称 Nombre en el juego
+    ///昵称
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string NickName {
@@ -72,7 +72,7 @@ namespace ProtoMsg {
     public const int ResultFieldNumber = 1;
     private int result_;
     /// <summary>
-    ///结果:0创建成功 1角色已存在 El personaje ya existe
+    ///结果:0创建成功 1角色已存在
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int Result {
@@ -86,7 +86,7 @@ namespace ProtoMsg {
     public const int RolesInfoFieldNumber = 2;
     private global::ProtoMsg.RolesInfo rolesInfo_;
     /// <summary>
-    ///角色信息 结果为0时返回 Información del personaje
+    ///角色信息 结果为0时返回
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::ProtoMsg.RolesInfo RolesInfo {

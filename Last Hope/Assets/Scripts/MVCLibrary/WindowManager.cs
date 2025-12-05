@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Game.View;
+using System;
 
 /// <summary>
 /// 窗体类型
@@ -100,5 +101,10 @@ public class WindowManager : MonoSingleton<WindowManager>
                 item.Close(isDestroy);
             }
         }
+    }
+    public void ShowTips(string text, Action enterBtnAction = null, Action closeBtnAction = null)
+    {
+        TipsWindow tipsWindow = (TipsWindow)Instance.OpenWindow(WindowType.TipsWindow);
+        tipsWindow.ShowTips(text, enterBtnAction, closeBtnAction);
     }
 }

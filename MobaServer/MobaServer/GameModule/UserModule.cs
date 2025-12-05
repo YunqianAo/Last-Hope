@@ -12,7 +12,7 @@ namespace MobaServer.GameModule
         public override void AddListener()
         {
             NetEvent.Instance.AddEventListener(1000, HandleUserRegisterC2S);
-            NetEvent.Instance.AddEventListener(1000, HandleUserLoginC2S);
+            NetEvent.Instance.AddEventListener(1001, HandleUserLoginC2S);
         }
 
 
@@ -92,7 +92,7 @@ namespace MobaServer.GameModule
         public override void RemoveListener()
         {
             NetEvent.Instance.RemoveEventListener(1000, HandleUserRegisterC2S);
-            NetEvent.Instance.RemoveEventListener(1000, HandleUserLoginC2S);
+            NetEvent.Instance.RemoveEventListener(1001, HandleUserLoginC2S);
         }
     }
 }

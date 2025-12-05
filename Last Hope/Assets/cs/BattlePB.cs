@@ -18,7 +18,7 @@ namespace ProtoMsg {
     public const int RolesIDFieldNumber = 1;
     private int rolesID_;
     /// <summary>
-    ///角色ID / ID del Rol
+    ///角色ID
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int RolesID {
@@ -32,7 +32,7 @@ namespace ProtoMsg {
     public const int RoomIDFieldNumber = 2;
     private int roomID_;
     /// <summary>
-    ///房间ID ID de la Sala
+    ///房间ID
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int RoomID {
@@ -46,7 +46,7 @@ namespace ProtoMsg {
     public const int KeyFieldNumber = 3;
     private int key_;
     /// <summary>
-    ///键码 Codigo Clave
+    ///键码
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int Key {
@@ -60,7 +60,7 @@ namespace ProtoMsg {
     public const int MousePositionFieldNumber = 4;
     private global::ProtoMsg.V3Info mousePosition_;
     /// <summary>
-    ///鼠标位置 Posición del ratón
+    ///鼠标位置
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::ProtoMsg.V3Info MousePosition {
@@ -74,7 +74,7 @@ namespace ProtoMsg {
     public const int LockTagFieldNumber = 5;
     private string lockTag_ = "";
     /// <summary>
-    ///锁定的标签 Etiquetas bloqueadas
+    ///锁定的标签
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public string LockTag {
@@ -88,7 +88,7 @@ namespace ProtoMsg {
     public const int LockIDFieldNumber = 6;
     private int lockID_;
     /// <summary>
-    ///锁定的ID ID Bloqueada
+    ///锁定的ID
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int LockID {
@@ -200,7 +200,7 @@ namespace ProtoMsg {
     public const int CMDFieldNumber = 1;
     private global::ProtoMsg.BattleUserInputC2S cMD_;
     /// <summary>
-    ///用户的输入 Input del usuario
+    ///用户的输入
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::ProtoMsg.BattleUserInputC2S CMD {
