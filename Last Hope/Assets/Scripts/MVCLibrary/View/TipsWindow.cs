@@ -13,7 +13,7 @@ namespace Game.View
             selfType = WindowType.TipsWindow;
             scenesType = ScenesType.Login;
             resident = true;
-            resName = "Tips/TipsWindow";
+            resName = "UIPrefab/Tips/TipsWindow";
 
         }
         public override void Update(float deltaTime)

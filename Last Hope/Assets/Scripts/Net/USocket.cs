@@ -37,6 +37,15 @@ namespace Game.Net
                 }
                 catch(Exception e) {
                     Debug.LogError(e.Message);
+                    if (udpClient != null)
+                    {
+                        Debug.LogError(e.Message);
+                    }
+                    else
+                    {
+                        Debug.Log("UdpClient closed, stop ReceiveTask.");
+                    }
+                    break;  // Ìø³ö while Ñ­»·
                 }
             }
         }

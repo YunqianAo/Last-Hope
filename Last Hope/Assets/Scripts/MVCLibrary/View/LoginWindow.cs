@@ -37,8 +37,9 @@ namespace Game.View
         {
             base.OnAddListener();
             NetEvent.Instance.AddEventListener(1000, HandleUserRegisterS2C);
-            NetEvent.Instance.AddEventListener(1000, HandleUserLoginS2C);
+            NetEvent.Instance.AddEventListener(1001, HandleUserLoginS2C);
         }
+
 
         private void HandleUserLoginS2C(BufferEntity p)
         {
@@ -108,7 +109,11 @@ namespace Game.View
         protected override void OnRemoveListener()
         {
             base.OnRemoveListener();
-        }
+             
+            NetEvent.Instance.RemoveEventListener(1000, HandleUserRegisterS2C);
+            NetEvent.Instance.RemoveEventListener(1001, HandleUserLoginS2C);
+        
+    }
 
         protected override void RegisterUIEvent()
         {

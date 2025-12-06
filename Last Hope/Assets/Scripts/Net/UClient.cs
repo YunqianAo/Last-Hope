@@ -37,16 +37,25 @@ namespace Game.Net
             switch (buffer.messageType)
             {
                 case 0:
-                    BufferEntity bufferEntity;
-                    if (sendPackage.TryRemove(buffer.sn, out bufferEntity))
+                    //BufferEntity bufferEntity;
+                    //if (sendPackage.TryRemove(buffer.sn, out bufferEntity))
+                    //{
+                    //    Debug.Log($"received ACK,sn{buffer.sn}");
+                    //}
+                    BufferEntity removed;
+                    if (sendPackage.TryRemove(buffer.sn, out removed))
                     {
-                        Debug.Log($"received ACK,sn{buffer.sn}");
+                        Debug.Log($"[ACK] sn={buffer.sn} removed, id={removed.messageID}");
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"[ACK] sn={buffer.sn} not found in sendPackage");
                     }
                     break;
                     case 1:
                     BufferEntity ackPackage = new BufferEntity(buffer);
                     uSocket.SendACK(ackPackage);
-                    HandleLoginPackage(ackPackage);
+                    HandleLoginPackage(buffer);
                     break;
                     default:
                     break;
@@ -86,16 +95,19 @@ namespace Game.Net
             sendSN += 1;
             package.sn = sendSN;
             package.Encoder(false);
-            if(sessionID != 0)
+            if (sessionID != 0)
             {
                 sendPackage.TryAdd(sendSN, package);
+                Debug.Log($"[Send] sn={package.sn}, id={package.messageID}, type={package.messageType}");
             }
             else
             {
-
+                Debug.Log($"[Send-NoTrack] sn={package.sn}, id={package.messageID}, type={package.messageType}, sessionID=0");
             }
             uSocket.Send(package.buffer, endPoint);
-        }
+            Debug.Log($"[Send-NoTrack] sn={package.sn}, id={package.messageID}, type={package.messageType}");
+        
+    }
         int overtime = 150;
         public async void CheckOutTime()
         {
@@ -111,6 +123,7 @@ namespace Game.Net
                 {
                     package.recurCount += 1;
                     Debug.Log($"outtime and repeat, time{package.recurCount}");
+                    Debug.Log($"[Resend] sn={package.sn}, id={package.messageID}, time={package.recurCount}");
                     uSocket.Send(package.buffer, endPoint);
                 }
             }
