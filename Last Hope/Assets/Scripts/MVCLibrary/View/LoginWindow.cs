@@ -13,6 +13,7 @@ namespace Game.View
     {
         public LoginWindow()
         {
+            selfType =WindowType.LoginWindow;
             scenesType=ScenesType.Login;
             resident=false;
             resName = "UIPrefab/User/LoginWindow";
@@ -60,6 +61,7 @@ namespace Game.View
                     break;
                 case 2:
                     Debug.Log("incorrect password");
+                    WindowManager.Instance.ShowTips("incorrect password");
                     break;
                 case 3:
                    
@@ -76,6 +78,9 @@ namespace Game.View
             {
                 case 0:
                     Debug.Log("register successfull");
+                    Debug.Log("注册成功!");
+                    //打开提示窗体 提示
+                    WindowManager.Instance.ShowTips("register successfull");
                     break;
                 case 1:
                     break;
@@ -83,6 +88,7 @@ namespace Game.View
                     break;
                 case 3:
                     Debug.Log("have existed account");
+                    WindowManager.Instance.ShowTips("have existed account");
                     break;
                 default:
                     break;

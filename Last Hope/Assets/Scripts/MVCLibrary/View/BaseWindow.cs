@@ -177,7 +177,8 @@ namespace Game.View
                     Debug.LogError($"未找到UI预制件{selfType}");
                     return false;
                 }
-                transform = GameObject.Instantiate(obj).transform;
+                transform = obj.transform;
+                //transform = GameObject.Instantiate(obj).transform;
 
                 transform.gameObject.SetActive(false);
 

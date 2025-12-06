@@ -8,6 +8,7 @@ namespace Game.Model
     public class PlayerModel : Singleton<PlayerModel>
     {
         internal RolesInfo rolesInfo;
+        internal RoomInfo roomInfo;
     }
 }
 

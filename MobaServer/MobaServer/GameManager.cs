@@ -28,6 +28,7 @@ namespace MobaServer
         static void GameModuleInit()
         {
             UserModule.Instance.Init();
+            RolesModule.Instance.Init();
         }
     }
 }
