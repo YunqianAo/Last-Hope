@@ -40,6 +40,8 @@ public class WindowManager : MonoSingleton<WindowManager>
         windowDIC.Add(WindowType.LoginWindow, new LoginWindow());
         windowDIC.Add(WindowType.TipsWindow, new TipsWindow());
         windowDIC.Add(WindowType.RolesWindow, new RolesWindow());
+        windowDIC.Add(WindowType.LobbyWindow, new LobbyWindow());
+        windowDIC.Add(WindowType.RoomWindow, new RoomWindow());
     }
 
     public void Update()
