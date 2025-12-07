@@ -15,7 +15,7 @@ namespace Game.View {
             selfType = WindowType.RolesWindow;
             scenesType = ScenesType.Login;//
             resident = false;
-            resName = "Roles/RolesWindow";
+            resName = "UIPrefab/Roles/RolesWindow";
         }
 
         public override void Update(float deltaTime)

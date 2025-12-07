@@ -41,6 +41,36 @@ namespace Game.View
         }
 
 
+        //private void HandleUserLoginS2C(BufferEntity p)
+        //{
+        //    UserLoginS2C s2cMSG = ProtobufHelper.FromBytes<UserLoginS2C>(p.proto);
+        //    switch (s2cMSG.Result)
+        //    {
+        //        case 0:
+        //            Debug.Log("successfull");
+        //            if (s2cMSG.RolesInfo != null)
+        //            {
+        //                LoginCtrl.Instance.SaveRolesInfo(s2cMSG.RolesInfo);
+        //            }
+        //            else
+        //            {
+
+        //            }
+        //            Close();
+        //            break;
+        //        case 1:
+        //            break;
+        //        case 2:
+        //            Debug.Log("incorrect password");
+        //            WindowManager.Instance.ShowTips("incorrect password");
+        //            break;
+        //        case 3:
+
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
         private void HandleUserLoginS2C(BufferEntity p)
         {
             UserLoginS2C s2cMSG = ProtobufHelper.FromBytes<UserLoginS2C>(p.proto);
@@ -48,29 +78,39 @@ namespace Game.View
             {
                 case 0:
                     Debug.Log("successfull");
+
                     if (s2cMSG.RolesInfo != null)
                     {
+                        // 已经有角色：保存角色信息，然后进大厅
+                        // Already has role: save rolesInfo then go to lobby
                         LoginCtrl.Instance.SaveRolesInfo(s2cMSG.RolesInfo);
+                        WindowManager.Instance.OpenWindow(WindowType.LobbyWindow);
                     }
                     else
                     {
-
+                        // 没有角色：打开创建角色界面
+                        // No role yet: open create-role window
+                        WindowManager.Instance.OpenWindow(WindowType.RolesWindow);
                     }
-                    Close();
+
+                    Close();   // 关掉登录窗口
                     break;
+
                 case 1:
+                    // 账号不存在之类的，根据你服务器约定填
                     break;
+
                 case 2:
                     Debug.Log("incorrect password");
                     WindowManager.Instance.ShowTips("incorrect password");
                     break;
+
                 case 3:
-                   
-                    break;
-                default:
+                    // 其它错误码
                     break;
             }
         }
+
 
         private void HandleUserRegisterS2C(BufferEntity p)
         {

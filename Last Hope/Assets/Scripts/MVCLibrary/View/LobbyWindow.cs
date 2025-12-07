@@ -15,7 +15,7 @@ namespace Game.View
             selfType = WindowType.LobbyWindow;
             scenesType = ScenesType.Login;//
             resident = false;
-            resName = "Lobby/LobbyWindow";
+            resName = "UIPrefab/Lobby/LobbyWindow";
         }
 
         public override void Update(float deltaTime)

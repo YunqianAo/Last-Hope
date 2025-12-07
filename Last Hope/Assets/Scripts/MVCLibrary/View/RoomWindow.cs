@@ -20,7 +20,7 @@ namespace Game.View
             selfType = WindowType.RoomWindow;
             scenesType = ScenesType.Login;//
             resident = false;
-            resName = "Room/RoomWindow";
+            resName = "UIPrefab/Room/RoomWindow";
         }
 
         public override void Update(float deltaTime)
