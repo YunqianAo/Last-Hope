@@ -129,10 +129,114 @@ namespace Game.View
         /// 加载进入战斗
         /// </summary>
         /// <param name="response"></param>
+        //private void HandleRoomToBattleS2C(BufferEntity response)
+        //{
+        //    RoomToBattleS2C s2cMSG = ProtobufHelper.FromBytes<RoomToBattleS2C>(response.proto);
+        //    RoomCtrl.Instance.SavePlayerList(s2cMSG.PlayerList);
+        //    // ==============================
+        //    // 把房间数据写到 BattleData 里
+        //    // ==============================
+
+        //    // 1. 房间 ID
+        //    // 1. 房间 ID
+        //    var roomInfo = RolesCtrl.Instance.GetRoomInfo();   // ← 改这里
+        //    if (roomInfo != null)
+        //    {
+        //        BattleData.RoomID = roomInfo.ID;
+        //    }
+
+
+        //    // 2. 所有玩家的 RolesInfo（给 BattleSceneManager 生成玩家用）
+        //    BattleData.AllPlayers.Clear();
+        //    for (int i = 0; i < s2cMSG.PlayerList.Count; i++)
+        //    {
+        //        // PlayerInfo 里面有 RolesInfo
+        //        BattleData.AllPlayers.Add(s2cMSG.PlayerList[i].RolesInfo);
+        //    }
+
+        //    // 3. 本地玩家的 RolesID（区分本地玩家和远程玩家）
+        //    BattleData.LocalRolesID = RolesCtrl.Instance.GetRolesInfo().RolesID;
+
+        //    transform.Find("LoadBG").gameObject.SetActive(true);
+        //    HeroA_item = transform.Find("LoadBG/L_TeamA/HeroA_item");
+        //    HeroB_item = transform.Find("LoadBG/L_TeamB/HeroB_item");
+
+        //    for (int i = 0; i < s2cMSG.PlayerList.Count; i++)
+        //    {
+        //        GameObject go;
+        //        //A队伍
+        //        if (s2cMSG.PlayerList[i].TeamID==0)
+        //        {
+        //            go = GameObject.Instantiate(HeroA_item.gameObject, HeroA_item.parent, false);
+        //        }
+        //        //B队伍
+        //        else
+        //        {
+        //            go = GameObject.Instantiate(HeroB_item.gameObject, HeroB_item.parent, false);
+        //        }
+        //        go.transform.GetComponent<Image>().sprite
+        //            = ResManager.Instance.LoadHeroTexture(s2cMSG.PlayerList[i].HeroID);
+
+        //        go.transform.Find("NickName").GetComponent<Text>().text 
+        //            = s2cMSG.PlayerList[i].RolesInfo.NickName;
+
+        //        go.transform.Find("SkillA").GetComponent<Image>().sprite
+        //           = ResManager.Instance.LoadGeneralSkill(s2cMSG.PlayerList[i].SkillA);
+
+        //        go.transform.Find("SkillB").GetComponent<Image>().sprite
+        //           = ResManager.Instance.LoadGeneralSkill(s2cMSG.PlayerList[i].SkillB);
+
+        //        go.transform.Find("Progress").GetComponent<Text>().text
+        //           = "0%";
+
+        //        go.gameObject.SetActive(true);
+        //        //缓存克隆出来的游戏物体 更新进度
+        //        playerLoadDIC[s2cMSG.PlayerList[i].RolesInfo.RolesID] = go;
+        //    }
+
+        //    async= SceneManager.LoadSceneAsync("Level01");
+        //    async.allowSceneActivation = false;//不要激活场景
+
+        //    //定时的去发送加载进度
+        //    SendProgeress();
+        //}
         private void HandleRoomToBattleS2C(BufferEntity response)
         {
             RoomToBattleS2C s2cMSG = ProtobufHelper.FromBytes<RoomToBattleS2C>(response.proto);
             RoomCtrl.Instance.SavePlayerList(s2cMSG.PlayerList);
+
+            // =========================
+            // 1）保存房间 ID  / Save room ID
+            // =========================
+            RoomInfo roomInfo = RolesCtrl.Instance.GetRoomInfo();
+            if (roomInfo != null)
+            {
+                BattleData.RoomID = roomInfo.ID;
+            }
+
+            // =======================================
+            // 2）保存所有玩家的 RolesInfo / Save all players
+            // =======================================
+            BattleData.AllPlayers.Clear();
+            for (int i = 0; i < s2cMSG.PlayerList.Count; i++)
+            {
+                BattleData.AllPlayers.Add(s2cMSG.PlayerList[i].RolesInfo);
+            }
+
+            // ==========================================
+            // 3）保存本地玩家的 RolesID / Save local RolesID
+            // ==========================================
+            RolesInfo selfRoles = RolesCtrl.Instance.GetRolesInfo();
+            if (selfRoles != null)
+            {
+                BattleData.LocalRolesID = selfRoles.RolesID;
+            }
+
+            // 打一条日志方便确认 / Debug log for checking
+            Debug.Log($"[RoomToBattle] RoomID={BattleData.RoomID}, " +
+                      $"Players={BattleData.AllPlayers.Count}, " +
+                      $"LocalRolesID={BattleData.LocalRolesID}");
+            // =========================
 
             transform.Find("LoadBG").gameObject.SetActive(true);
             HeroA_item = transform.Find("LoadBG/L_TeamA/HeroA_item");
@@ -142,7 +246,7 @@ namespace Game.View
             {
                 GameObject go;
                 //A队伍
-                if (s2cMSG.PlayerList[i].TeamID==0)
+                if (s2cMSG.PlayerList[i].TeamID == 0)
                 {
                     go = GameObject.Instantiate(HeroA_item.gameObject, HeroA_item.parent, false);
                 }
@@ -151,32 +255,33 @@ namespace Game.View
                 {
                     go = GameObject.Instantiate(HeroB_item.gameObject, HeroB_item.parent, false);
                 }
+
                 go.transform.GetComponent<Image>().sprite
                     = ResManager.Instance.LoadHeroTexture(s2cMSG.PlayerList[i].HeroID);
 
-                go.transform.Find("NickName").GetComponent<Text>().text 
+                go.transform.Find("NickName").GetComponent<Text>().text
                     = s2cMSG.PlayerList[i].RolesInfo.NickName;
 
                 go.transform.Find("SkillA").GetComponent<Image>().sprite
-                   = ResManager.Instance.LoadGeneralSkill(s2cMSG.PlayerList[i].SkillA);
+                    = ResManager.Instance.LoadGeneralSkill(s2cMSG.PlayerList[i].SkillA);
 
                 go.transform.Find("SkillB").GetComponent<Image>().sprite
-                   = ResManager.Instance.LoadGeneralSkill(s2cMSG.PlayerList[i].SkillB);
+                    = ResManager.Instance.LoadGeneralSkill(s2cMSG.PlayerList[i].SkillB);
 
-                go.transform.Find("Progress").GetComponent<Text>().text
-                   = "0%";
+                go.transform.Find("Progress").GetComponent<Text>().text = "0%";
 
                 go.gameObject.SetActive(true);
                 //缓存克隆出来的游戏物体 更新进度
                 playerLoadDIC[s2cMSG.PlayerList[i].RolesInfo.RolesID] = go;
             }
 
-            async= SceneManager.LoadSceneAsync("Level01");
+            async = SceneManager.LoadSceneAsync("Level01");
             async.allowSceneActivation = false;//不要激活场景
 
             //定时的去发送加载进度
             SendProgeress();
         }
+
         AsyncOperation async;
 
 
