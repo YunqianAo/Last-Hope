@@ -179,6 +179,7 @@ namespace Game.View
         }
         AsyncOperation async;
 
+
         async void SendProgeress() {
             BufferFactory.CreateAndSendPackage(1406,new RoomLoadProgressC2S() {
                 LoadProgress=(int)(async.progress>=0.89f?100:async.progress*100)

@@ -42,6 +42,8 @@ namespace MobaServer
             // 房间模块：注册 1400+（选英雄、进战斗等房间消息）
             // Room module: handle 1400+ (room / hero select / battle)
             RoomModule.Instance.Init();
+            // 新增战斗模块 / add battle module
+            BattleModule.Instance.Init();
         }
     }
 }
